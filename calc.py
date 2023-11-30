@@ -10,17 +10,26 @@ def get_user_input():
 
 def ejecutar_operacion(user_input, callback):
     num1, num2, operation = user_input
+    if operation == '+':
+        result = callback(num1, num2)
+    elif operation == '-':
+        result = callback(num1, num2)
+    elif operation == '*':
+        result = callback(num1, num2)
+    elif operation == '/':
+        result = callback(num1, num2)
+    else:
+        result = "Operacion invalida"
+    
+    print("Resultado:", result)
+
+def main():
     operations = {
         '+': lambda x, y: x + y,
         '-': lambda x, y: x - y,
         '*': lambda x, y: x * y,
         '/': lambda x, y: x / y if y != 0 else "Division by zero error"
     }
-    result = operations.get(operation, lambda x, y: "Operacion invalida")(num1, num2)
-    print("Resultado:", result)
-
-def main():
-    operations = {'+','-','*','/'}
     while True:
         user_input = get_user_input()
 
@@ -28,12 +37,13 @@ def main():
             print("Salir.")
             break
 
-        print("\nCalculando...\n")
+        print("\nCalculando...")
 
-        if user_input[2] in ['+', '-', '*', '/']:
+        if user_input[2] in operations:
             ejecutar_operacion(user_input, operations[user_input[2]])
         else:
-            print("Operacion invalida. Seleccione (+, -, *, /) o escriba 'exit' para salir.")
+            print("Operacion invalida. Seleccione (+, -, *, /) o  escriba 'exit' para salir.")
 
 if __name__ == "__main__":
     main()
+
